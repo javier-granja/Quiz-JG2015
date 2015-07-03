@@ -19,21 +19,32 @@
   <body>
     <div id="page-warp">
       <header class="main" id="h1">
-        <h2>Quiz<span>: el juego de las preguntas</span></h2>
+        <h2><IMG SRC="/images/favicon.ico"WIDTH=25 HEIGHT=25 >&nbspQuiz<span>: el juego de las preguntas</span></h2>
       </header>
 
     <nav class="main" id="n1" role="navigation">
       <span><a href="/">Inicio</a></span>
       <span><a href="/quizes/question">Preguntas</a></span>
+      <span><a href="/author">Cr&eacuteditos</a></span>
     </nav>
     <section class="main" id="s1">
       <div><%-body%></div>
     </section>
-    <footer class="main" id="f1">
-      <a href="http://es.wikipedia.org/wiki/Quiz">
-        &iquestQu&eacute es un Quiz?
-      </a>
-    </footer>
+   <footer class="main" id="f1">
+         <a id="f2" href="http://es.wikipedia.org/wiki/Quiz">
+          &iquestQu&eacute es un Quiz?
+         </a>
+    </footer>  
   </div>
   </body>
+<script type="text/javascript">
+if (location.pathname==="/author"){
+document.getElementById('f2').href="https://github.com/javier-granja/Quiz-JG2015.git";
+document.getElementById('f2').innerHTML='Mi proyecto Quiz';
+}
+else {
+document.getElementById('f2').href="http://es.wikipedia.org/wiki/Quiz";
+document.getElementById('f2').innerHTML= '&iquestQu&eacute es un Quiz?'; 
+}
+</script>
 </html>
