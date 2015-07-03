@@ -1,2 +1,7 @@
-      <%= respuesta %><p>
+      <% if (respuesta==='Incorrecto') { %>
+      <h2><font color="red"><%= respuesta  %></font></h2>
+      <% } %>
+      <% if (respuesta==='Correcto') { %>
+      <h2><%= respuesta  %></h2>
+      <% } %>
       <a href="/quizes/question"> Intentelo otra vez </a>
