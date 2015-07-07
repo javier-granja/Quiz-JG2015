@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# Quiz-JG2015
+>>>>>>> 19ba3d19577bf55224436c61019cdae406d4ba08
 # www.js
 
 ## Overview
@@ -18,6 +22,8 @@ Paso 6: Despliegue en la nube (Heroku)
 
 Paso 7: Creditos (p2p obligatorio).
 
+Paso 8: Despliegue DB en Heroku.
+
 cada paso es un commit de la rama master
 
 ## Directorio de la aplicación /bin
@@ -26,4 +32,7 @@ cada paso es un commit de la rama master
 
 
 ## Contacto  javier.granja@gmail.com
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19ba3d19577bf55224436c61019cdae406d4ba08
