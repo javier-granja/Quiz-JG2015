@@ -11,6 +11,8 @@ var port    =(url[5]||null);
 var host    =(url[4]||null);
 var storage =process.env.DATABASE_STORAGE;
 
+console.log(url);
+
 //Cargar modelo ORM
 var Sequelize = require('sequelize');
 
@@ -33,15 +35,19 @@ exports.Quiz=Quiz;// exportar la definición de la tabla Quiz
 //sequelize.sync() crea e inicializa tabla de preguntas en DB
 sequelize.sync().success(function() {
   Quiz.count().success(function(count){
-   if (count===0) {
+    if (count===0) {
     // creamos la tabla si no esta creada.
+    Quiz.create({
+        pregunta: "Capital de Portugal",
+        respuesta: "Lisboa"
+                });
     Quiz.create({
         pregunta: "Capital de Italia",
         respuesta: "Roma"
-    }).success(function() {
+    }).then(function() {
         // you can now access the newly created user via the variable user
         console.log('Base de datos inicializada');
     });
-   };//fin if	
+     }; //fin if	
   });  
 });
