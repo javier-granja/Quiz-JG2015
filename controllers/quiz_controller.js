@@ -10,11 +10,27 @@ exports.load=function(req,res,next,quizId){
 	}//fin fuction(quiz)
 	).catch (function(error){next(error);})
 };
+
+
 // GET /quizes
 exports.index=function(req,res){
-	models.Quiz.findAll().then(function(quizes){
-	  res.render('quizes/index.ejs',{quizes:quizes});	
-	}).catch (function(error){next(error);})
+       console.log(req.query.search);
+       if ((req.query.search===undefined)||(req.query.search==='')) {
+       	    var texto  = "Texto&nbsp;a&nbsp;buscar";
+          models.Quiz.findAll().then(function(quizes){
+	       res.render('quizes/index.ejs',{quizes:quizes, texto:texto});	
+	      }).catch (function(error){next(error);})
+
+       } else{
+           var cadena = req.query.search;
+           var texto  = req.query.search; 
+           cadena= cadena.replace(/\s+/g,"%");
+           texto = texto.replace(/\s+/g,"&nbsp;");
+           //console.log(texto);
+           models.Quiz.findAll({where: ["pregunta like ?", '%' + cadena + '%']}).then(function(quizes){
+	       res.render('quizes/index.ejs',{quizes:quizes, texto:texto});	
+	      }).catch (function(error){next(error);})
+       };	
 };
 // GET /quizes/:id
 exports.show=function(req,res){

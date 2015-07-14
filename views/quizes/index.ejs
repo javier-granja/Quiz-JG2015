@@ -1,7 +1,18 @@
-        <table> 
+        <form method="get" action="quizes?search=value" accept-charset="UTF-8">
+          <% if (texto==='Texto a buscar') { %>
+          <input type="text" name="search" id="s1" value="Texto a buscar" SIZE="40" />
+           <% } else { %>
+          <input type="text" name="search" id="s1" value=<%=texto%> SIZE="40" />
+          <% } %>
+         <input type="submit" value="Buscar"/>
+        </form>       
+
+       <table> 
         <% var i;for (i=0;i<quizes.length;i++){%>
          <tr><td><a href="quizes/<%=quizes[i].id %>"><%=quizes[i].pregunta %>
          </a></td></tr>
          <% } %>
         </table>  
+  
+
        

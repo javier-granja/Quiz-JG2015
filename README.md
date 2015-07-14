@@ -24,7 +24,12 @@ Paso 7: Creditos (p2p obligatorio).
 
 Paso 8: Despliegue DB en Heroku.
 
+Paso 9: Autoload de la DB
 cada paso es un commit de la rama master
+
+paso 10 Buscador de Preguntas (p2p obligatorio) 
+branch quiz7 y master buscador de preguntas
+
 
 ## Directorio de la aplicación /bin
 
