@@ -57,11 +57,39 @@ exports.create=function(req,res){
      var validate_errors = quiz.validate();
     
      if (validate_errors) {	
-       console.log( validate_errors);   
+       //console.log( validate_errors);   
        var errors = new Array(validate_errors.pregunta, validate_errors.respuesta);
        if (validate_errors.pregunta ===undefined) {errors.splice(0,1);};
        if (validate_errors.respuesta===undefined) {errors.splice(1,1);};
        res.render('quizes/new',{quiz: quiz,errors:errors});
+      return;
+      } 
+
+	//Guardar en DB los campos de pregúnta y respuesta de quiz
+	  quiz.save ({fields:["pregunta","respuesta"]}).then(function(){
+	  	res.redirect('/quizes');
+	  })// Redirección HTTP (URL relativo) lista de pregúntas.
+};
+// GET /quizes/:id/edit
+exports.edit=function(req,res){
+	  var quiz=req.quiz;//autoload de la instancia de quiz
+	  res.render('quizes/edit',{quiz:quiz,errors:[]});	
+};
+//PUT /quizes/:id
+exports.update=function(req,res){
+	console.log( 'llego');
+	var quiz=models.Quiz.build(req.body.quiz);
+	req.quiz.pregunta=req.body.quiz.pregunta;
+	req.quiz.respuesta=req.body.quiz.respuesta;
+
+     var validate_errors = req.quiz.validate();
+    
+     if (validate_errors) {	
+       //console.log( validate_errors);   
+       var errors = new Array(validate_errors.pregunta, validate_errors.respuesta);
+       if (validate_errors.pregunta ===undefined) {errors.splice(0,1);};
+       if (validate_errors.respuesta===undefined) {errors.splice(1,1);};
+       res.render('quizes/edit',{quiz: req.quiz,errors:errors});
       return;
       } 
 
