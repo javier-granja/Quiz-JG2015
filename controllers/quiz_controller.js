@@ -12,7 +12,7 @@ exports.load=function(req,res,next,quizId){
 };
 // GET /quizes
 exports.index=function(req,res){
-       console.log(req.query.search);
+      // console.log(req.query.search);
        if ((req.query.search===undefined)||(req.query.search==='')) {
        	    var texto  = "Texto&nbsp;a&nbsp;buscar";
           models.Quiz.findAll().then(function(quizes){
@@ -77,8 +77,8 @@ exports.edit=function(req,res){
 };
 //PUT /quizes/:id
 exports.update=function(req,res){
-	console.log( 'llego');
-	var quiz=models.Quiz.build(req.body.quiz);
+	
+	//var quiz=models.Quiz.build(req.body.quiz);
 	req.quiz.pregunta=req.body.quiz.pregunta;
 	req.quiz.respuesta=req.body.quiz.respuesta;
 
@@ -94,7 +94,17 @@ exports.update=function(req,res){
       } 
 
 	//Guardar en DB los campos de pregúnta y respuesta de quiz
-	  quiz.save ({fields:["pregunta","respuesta"]}).then(function(){
+	  req.quiz.save ({fields:["pregunta","respuesta"]}).then(function(){
 	  	res.redirect('/quizes');
 	  })// Redirección HTTP (URL relativo) lista de pregúntas.
+};
+
+//DELETE/quizes/:id
+exports.destroy=function(req,res){
+      req.quiz
+      .destroy()
+	  .then(function(){
+	  	res.redirect('/quizes');// Redirección
+	  }).catch(function(error){next(error)})
+	  
 };
