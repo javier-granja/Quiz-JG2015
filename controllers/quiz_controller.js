@@ -46,27 +46,29 @@ exports.answer=function(req,res){
 //GET / quizes/new
 exports.new=function(req,res){
 	var quiz=models.Quiz.build( //crea el objeto quiz con la estructura de al base de datos
-	   {pregunta:"Pregunta", respuesta:"Respuesta"}
+	   {pregunta:"Pregunta", respuesta:"Respuesta",tema:"Otro"}
 		);	
 		res.render('quizes/new',{quiz: quiz,errors:[]});	
 };
 //POST / quizes/create
 exports.create=function(req,res){
 	var quiz=models.Quiz.build(req.body.quiz);
-
+     //console.log( req.body.quiz);
      var validate_errors = quiz.validate();
     
      if (validate_errors) {	
        //console.log( validate_errors);   
-       var errors = new Array(validate_errors.pregunta, validate_errors.respuesta);
+       var errors = new Array(validate_errors.pregunta, validate_errors.respuesta,validate_errors.tema);
+       if (validate_errors.tema     ===undefined) {errors.splice(2,1);}; 
+       if (validate_errors.respuesta===undefined) {errors.splice(1,1);}; 
        if (validate_errors.pregunta ===undefined) {errors.splice(0,1);};
-       if (validate_errors.respuesta===undefined) {errors.splice(1,1);};
+       console.log(errors); 
        res.render('quizes/new',{quiz: quiz,errors:errors});
       return;
       } 
 
 	//Guardar en DB los campos de pregúnta y respuesta de quiz
-	  quiz.save ({fields:["pregunta","respuesta"]}).then(function(){
+	  quiz.save ({fields:["pregunta","respuesta","tema"]}).then(function(){
 	  	res.redirect('/quizes');
 	  })// Redirección HTTP (URL relativo) lista de pregúntas.
 };
@@ -86,15 +88,16 @@ exports.update=function(req,res){
     
      if (validate_errors) {	
        //console.log( validate_errors);   
-       var errors = new Array(validate_errors.pregunta, validate_errors.respuesta);
+       var errors = new Array(validate_errors.pregunta, validate_errors.respuesta,validate_errors.tema);
+       if (validate_errors.tema     ===undefined) {errors.splice(2,1);}; 
+       if (validate_errors.respuesta===undefined) {errors.splice(1,1);}; 
        if (validate_errors.pregunta ===undefined) {errors.splice(0,1);};
-       if (validate_errors.respuesta===undefined) {errors.splice(1,1);};
        res.render('quizes/edit',{quiz: req.quiz,errors:errors});
       return;
       } 
 
 	//Guardar en DB los campos de pregúnta y respuesta de quiz
-	  req.quiz.save ({fields:["pregunta","respuesta"]}).then(function(){
+	  req.quiz.save ({fields:["pregunta","respuesta","tema"]}).then(function(){
 	  	res.redirect('/quizes');
 	  })// Redirección HTTP (URL relativo) lista de pregúntas.
 };

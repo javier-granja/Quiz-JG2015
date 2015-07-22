@@ -30,6 +30,15 @@ cada paso es un commit de la rama master
 paso 10 Buscador de Preguntas (p2p obligatorio) 
 branch quiz7 y master buscador de preguntas
 
+paso 11 Validación de entradas
+
+paso 12 Editar preguntas
+
+paso 13 Borrar preguntas
+
+paso 14  P2P Obligatorio <select name="tema">
+
+
 
 ## Directorio de la aplicaciÃ³n /bin
 
