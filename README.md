@@ -38,6 +38,7 @@ paso 13 Borrar preguntas
 
 paso 14  P2P Obligatorio <select name="tema">
 
+paso 15  Crear Comentarios
 
 
 ## Directorio de la aplicación /bin

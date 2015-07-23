@@ -30,7 +30,16 @@ var sequelize=new Sequelize(DB_name, user,pwd,
 
 //Importar la definición de la tabla quiz.js
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
+//Importar la definición de la tabla comment.js
+var Comment = sequelize.import(path.join(__dirname,'comment'));
+
+// Definir La relación de tipo 1-a-N entre Quiz y Comment
+Comment.belongsTo(Quiz);//un comment pertenece a un quiz.
+Quiz.hasMany(Comment);//un quiz puede tener muchos comments
+
+
 exports.Quiz=Quiz;// exportar la definición de la tabla Quiz
+exports.Comment=Comment;// exportar la definición de la tabla Comment
 
 //sequelize.sync() crea e inicializa tabla de preguntas en DB
 sequelize.sync().success(function() {
