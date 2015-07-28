@@ -19,6 +19,12 @@
   <body>
     <div id="page-warp">
       <header class="main" id="h1">
+        <%if(!session.user){%>
+            <span class="right"><a href="/login">Login</a></span>
+        <%}else{%>  
+            <span class="right"><%=session.user.username%><a href="/logout">Logout</a></span>
+        <%}%>
+
         <h2><IMG SRC="/images/favicon.ico"WIDTH=25 HEIGHT=25 >&nbsp;Quiz<span>: el juego de las preguntas</span></h2>
       </header>
 
@@ -28,7 +34,6 @@
       <span><a href="/author">Cr&eacute;ditos</a></span>
     </nav>
     <section class="main" id="s1">
-        
         <% if (errors.length){ %>
         <span id='ErrorMsgs'>
            Corregir errores:<br/>

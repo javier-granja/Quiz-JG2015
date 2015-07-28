@@ -40,6 +40,7 @@ paso 14  P2P Obligatorio <select name="tema">
 
 paso 15  Crear Comentarios
 
+paso 16 Autenticación y sesión
 
 ## Directorio de la aplicaciÃ³n /bin
 
