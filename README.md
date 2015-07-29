@@ -44,6 +44,8 @@ paso 16 Autenticación y sesión
 
 paso 17 Autorización
 
+paso 18: Moderación de Comentarios
+
 ## Directorio de la aplicaciÃ³n /bin
 
     www.js     --> El arcivo main javascript para usar en producciÃ³n

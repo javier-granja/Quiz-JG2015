@@ -11,6 +11,10 @@ module.exports=function(sequelize,DataTypes){
           QuizId: {
           type:DataTypes.INTEGER,
           validate:{isInt:true}
+          },
+          publicado: {
+          type:DataTypes.BOOLEAN,
+          defaultValue:false
           }
         }
     );

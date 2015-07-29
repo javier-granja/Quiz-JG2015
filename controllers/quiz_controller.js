@@ -8,7 +8,7 @@ exports.load=function(req,res,next,quizId){
 			if (quiz) {
 				req.quiz=quiz;
 				next();
-			}else {next(new Error('No exixte quizId='+quizId));}	
+			}else {next(new Error('No existe quizId='+quizId));}	
 	}//fin fuction(quiz)
 	).catch (function(error){next(error);})
 };
