@@ -30,6 +30,7 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Helpers dinamicos:
 app.use(function(req,res,next){
     //guardar el path en session.redir para despues de login
@@ -38,9 +39,37 @@ app.use(function(req,res,next){
     };//fin if
     // Hacer visible req.session en las vistas
     res.locals.session=req.session;
-
     next();
 });//fin use
+
+app.use(function(req,res,next){
+
+       console.log(req.session);
+       
+       var t0=req.session.data;
+       console.log(req.session.data)
+       if (typeof req.session.data!=="undefined") {
+        var tiempo0=(tiempo0||t0.data); 
+        tiempo=Date.now();
+        console.log(tiempo-tiempo0);
+        if (tiempo-tiempo0>10000) {
+            req.session.errors=[{"mensage":'Reiniciar sesión'}];
+            var errors1 = new Array(req.session.errors);
+            if (typeof errors1[0][0].mensage!=="undefined") {     
+               var errors2 =new Array(errors1[0][0].mensage.toString());
+           }
+            console.log(errors1);
+            //var errors3 =new Array(errors1[0][0].mensage.toString());
+            delete req.session.user;
+            delete req.session.date;
+            res.render('sessions/new',{errors:[]}); 
+        } else{tiempo0 =tiempo;};
+
+       };//fin if typeof
+  
+       next();
+    });
+
 
 app.use('/', routes);
 

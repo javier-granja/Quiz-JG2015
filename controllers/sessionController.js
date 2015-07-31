@@ -51,6 +51,7 @@ exports.createlogin=function(req,res){
      // Crear req.session.user y guardar campos id y username
      // La sesión se define or la existencia de req.session.user
      req.session.user = {id:user.id, username:user.username};
+     req.session.data = {data:Date.now()};
      console.log(user);
      res.redirect(req.session.redir.toString());
      // redirección al path anterior a login
@@ -60,6 +61,7 @@ exports.createlogin=function(req,res){
 //DELETE /logout  --Destruir sesión
 exports.destroylogin=function(req,res){
 	delete req.session.user;
+     delete req.session.data;
 	res.redirect(req.session.redir.toString());
 	// redirección al path anterior a login
 };// fin destroylogin
